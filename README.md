@@ -25,9 +25,9 @@ be found at <https://hexdocs.pm/sec_edgar>.
 #### FullTextSearch
 ```
 iex -S mix
-iex(1)> Finch.start_link(name: Edgar.Clients.FullTextSearch)
+iex(1)> Finch.start_link(name: SecEdgarClients.FullTextSearch)
 {:ok, #PID<0.249.0>}
-iex(2)> {:ok, response} = Edgar.FullTextSearch.perform("BRK")
+iex(2)> {:ok, response} = SecEdgarFullTextSearch.perform("BRK")
 {:ok,
  %{
    "_shards" => %{

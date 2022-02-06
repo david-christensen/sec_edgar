@@ -1,5 +1,5 @@
-defmodule Edgar.FullTextSearch do
-  alias Edgar.Clients.FullTextSearch, as: FullTextSearchClient
+defmodule SecEdgarFullTextSearch do
+  alias SecEdgarClients.FullTextSearch, as: FullTextSearchClient
 
   def perform(search_term) do
     FullTextSearchClient.perform(search_term) |> parse_as_json
@@ -17,4 +17,3 @@ defmodule Edgar.FullTextSearch do
 
   defp parse_as_json({:error, _exception} = error), do: error
 end
-
