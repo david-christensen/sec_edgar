@@ -1,7 +1,4 @@
-defmodule SecEdgarClients.FullTextSearch do
-  alias Finch.Response
-  import Jason
-
+defmodule SecEdgar.Clients.FullTextSearch do
   def child_spec do
     {
       Finch,

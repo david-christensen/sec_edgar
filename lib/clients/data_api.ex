@@ -1,4 +1,4 @@
-defmodule SecEdgarClients.DataApi do
+defmodule SecEdgar.Clients.DataApi do
   # TODO move to config file?
   @user_agent System.fetch_env!("SEC_EDGAR_USER_AGENT")
 
