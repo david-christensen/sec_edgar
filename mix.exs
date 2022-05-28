@@ -9,6 +9,7 @@ defmodule SecEdgar.MixProject do
       app: :sec_edgar,
       version: @version,
       elixir: "~> 1.13",
+      elixirc_paths: elixirc_paths(Mix.env()),
       start_permanent: Mix.env() == :prod,
       description: "An elixir client library for the data.sec.gov API.",
       deps: deps(),
@@ -31,6 +32,10 @@ defmodule SecEdgar.MixProject do
     ]
   end
 
+  # Specifies which paths to compile per environment.
+  defp elixirc_paths(:test), do: ["lib", "test/support"]
+  defp elixirc_paths(_), do: ["lib"]
+
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
@@ -38,7 +43,8 @@ defmodule SecEdgar.MixProject do
       # {:dep_from_git, git: "https://github.com/elixir-lang/my_dep.git", tag: "0.1.0"}
       {:ex_doc, "~> 0.14", only: :dev, runtime: false},
       {:finch, "~> 0.3.0"},
-      {:jason, "~> 1.2"}
+      {:jason, "~> 1.2"},
+      {:mox, "~> 1.0", only: :test}
     ]
   end
 end

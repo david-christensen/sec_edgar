@@ -45,7 +45,7 @@ defmodule SecEdgar.Clients.DataApi do
   end
 
   defp parse_as_json({:ok, %Finch.Response{status: error_code, body: body}}) do
-    {:error, {:http, error_code, body}}
+    {:error, {:http, error_code, :zlib.gunzip(body)}}
   end
 
   defp parse_as_json({:error, _exception} = error), do: error

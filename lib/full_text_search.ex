@@ -1,10 +1,6 @@
 defmodule SecEdgar.FullTextSearch do
   alias SecEdgar.Clients.FullTextSearch, as: FullTextSearchClient
 
-  # iex -S mix
-  # Finch.start_link(name: SecEdgar.Clients.FullTextSearch)
-  # list = SecEdgar.FullTextSearch.list_for_ticker("BRK")
-  # entity = SecEdgar.FullTextSearch.find_for_ticker("BRK")
   def perform(search_term) do
     FullTextSearchClient.perform(search_term) |> parse_as_json
   end
