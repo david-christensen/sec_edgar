@@ -1,4 +1,5 @@
 defmodule SecEdgar.Clients.FullTextSearch do
+
   def child_spec do
     {
       Finch,
@@ -20,7 +21,10 @@ defmodule SecEdgar.Clients.FullTextSearch do
         :post
         |> Finch.build(
           "https://efts.sec.gov/LATEST/search-index",
-          [{"Content-Type", "application/json"}],
+          [
+            {"User-Agent", user_agent()},
+            {"Content-Type", "application/json"}
+          ],
           body
         )
         |> Finch.request(__MODULE__)
@@ -46,5 +50,9 @@ defmodule SecEdgar.Clients.FullTextSearch do
       "narrow" => false
     }
     |> Jason.encode()
+  end
+
+  defp user_agent() do
+    System.fetch_env!("SEC_EDGAR_USER_AGENT")
   end
 end

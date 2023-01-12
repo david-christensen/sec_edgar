@@ -1,6 +1,4 @@
 defmodule SecEdgar.Clients.DataApi do
-  # TODO move to config file?
-  @user_agent System.fetch_env!("SEC_EDGAR_USER_AGENT")
 
   def child_spec do
     {
@@ -29,7 +27,7 @@ defmodule SecEdgar.Clients.DataApi do
     |> Finch.build(
       "https://data.sec.gov#{path}",
       [
-        {"User-Agent", @user_agent},
+        {"User-Agent", user_agent()},
         {"Accept-Encoding", "gzip, deflate"},
         {"Host", "data.sec.gov"}
       ]
@@ -49,4 +47,8 @@ defmodule SecEdgar.Clients.DataApi do
   end
 
   defp parse_as_json({:error, _exception} = error), do: error
+
+  defp user_agent() do
+    System.fetch_env!("SEC_EDGAR_USER_AGENT")
+  end
 end
